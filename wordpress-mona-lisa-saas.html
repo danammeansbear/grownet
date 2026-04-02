@@ -1,0 +1,812 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+  .mls-page,
+  .mls-page * {
+    box-sizing: border-box;
+  }
+
+  .mls-page {
+    --mls-ink: #13211b;
+    --mls-ink-soft: #42554b;
+    --mls-cream: #f7f2e8;
+    --mls-sand: #e7dbc6;
+    --mls-leaf: #6f8f3a;
+    --mls-moss: #314d2f;
+    --mls-gold: #c99a3d;
+    --mls-accent: #d45f3d;
+    --mls-panel: rgba(255, 251, 245, 0.78);
+    --mls-shadow: 0 24px 80px rgba(19, 33, 27, 0.14);
+    color: var(--mls-ink);
+    background:
+      radial-gradient(circle at top left, rgba(201, 154, 61, 0.18), transparent 30%),
+      radial-gradient(circle at 85% 15%, rgba(111, 143, 58, 0.16), transparent 22%),
+      linear-gradient(180deg, #f9f4ea 0%, #efe4d2 100%);
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .mls-shell {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 28px 20px 96px;
+    position: relative;
+  }
+
+  .mls-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .mls-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .mls-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, var(--mls-gold), var(--mls-accent));
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font: 700 22px 'Space Grotesk', sans-serif;
+    box-shadow: 0 18px 40px rgba(212, 95, 61, 0.25);
+  }
+
+  .mls-brand-copy strong,
+  .mls-nav a,
+  .mls-button,
+  .mls-card h3,
+  .mls-section h2,
+  .mls-kicker,
+  .mls-metric strong,
+  .mls-pricing-value,
+  .mls-proof strong {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .mls-brand-copy strong {
+    display: block;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+  }
+
+  .mls-brand-copy span {
+    color: var(--mls-ink-soft);
+    font-size: 0.94rem;
+  }
+
+  .mls-nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .mls-nav a {
+    color: var(--mls-ink);
+    text-decoration: none;
+    font-size: 0.96rem;
+  }
+
+  .mls-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 34px;
+    align-items: stretch;
+    margin-bottom: 42px;
+  }
+
+  .mls-panel {
+    background: var(--mls-panel);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(49, 77, 47, 0.08);
+    border-radius: 28px;
+    box-shadow: var(--mls-shadow);
+  }
+
+  .mls-hero-copy {
+    padding: 48px;
+    position: relative;
+  }
+
+  .mls-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 999px;
+    padding: 8px 14px;
+    background: rgba(111, 143, 58, 0.12);
+    color: var(--mls-moss);
+    font-size: 0.9rem;
+    margin-bottom: 22px;
+  }
+
+  .mls-hero h1 {
+    margin: 0 0 18px;
+    font: 700 clamp(2.6rem, 6vw, 5.4rem) 'Space Grotesk', sans-serif;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+  }
+
+  .mls-hero h1 span {
+    color: var(--mls-accent);
+  }
+
+  .mls-subtitle {
+    font-size: 1.14rem;
+    line-height: 1.7;
+    color: var(--mls-ink-soft);
+    max-width: 640px;
+    margin-bottom: 28px;
+  }
+
+  .mls-button-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .mls-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 22px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .mls-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .mls-button-primary {
+    background: linear-gradient(135deg, var(--mls-accent), var(--mls-gold));
+    color: #fff;
+    box-shadow: 0 16px 34px rgba(212, 95, 61, 0.28);
+  }
+
+  .mls-button-secondary {
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--mls-ink);
+    border: 1px solid rgba(19, 33, 27, 0.08);
+  }
+
+  .mls-hero-points {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .mls-hero-points div {
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.66);
+    border: 1px solid rgba(49, 77, 47, 0.08);
+    font-size: 0.95rem;
+    color: var(--mls-ink-soft);
+  }
+
+  .mls-hero-points strong {
+    display: block;
+    color: var(--mls-ink);
+    margin-bottom: 4px;
+  }
+
+  .mls-dashboard {
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mls-dashboard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(111, 143, 58, 0.12), rgba(201, 154, 61, 0.04));
+    pointer-events: none;
+  }
+
+  .mls-screen {
+    position: relative;
+    border-radius: 22px;
+    background: #fffdf8;
+    border: 1px solid rgba(19, 33, 27, 0.08);
+    padding: 18px;
+  }
+
+  .mls-screen-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .mls-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .mls-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .mls-dots span:nth-child(1) { background: #d45f3d; }
+  .mls-dots span:nth-child(2) { background: #c99a3d; }
+  .mls-dots span:nth-child(3) { background: #6f8f3a; }
+
+  .mls-screen-badge {
+    border-radius: 999px;
+    padding: 8px 12px;
+    background: rgba(19, 33, 27, 0.05);
+    font-size: 0.85rem;
+    color: var(--mls-ink-soft);
+  }
+
+  .mls-grid-preview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .mls-cam-card,
+  .mls-sensor-card,
+  .mls-card,
+  .mls-price-card,
+  .mls-proof {
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(49, 77, 47, 0.08);
+  }
+
+  .mls-cam-card {
+    padding: 14px;
+  }
+
+  .mls-cam-head,
+  .mls-metric-grid,
+  .mls-proof-grid,
+  .mls-card-grid,
+  .mls-pricing-grid,
+  .mls-footer {
+    display: grid;
+    gap: 16px;
+  }
+
+  .mls-cam-head {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .mls-status {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(111, 143, 58, 0.14);
+    color: var(--mls-moss);
+  }
+
+  .mls-feed {
+    height: 132px;
+    border-radius: 16px;
+    background:
+      linear-gradient(135deg, rgba(111, 143, 58, 0.22), rgba(201, 154, 61, 0.08)),
+      repeating-linear-gradient(90deg, rgba(19, 33, 27, 0.05), rgba(19, 33, 27, 0.05) 1px, transparent 1px, transparent 14px),
+      linear-gradient(180deg, #4f6d3f 0%, #2e4930 100%);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .mls-feed::after {
+    content: 'ROI / Growth / Health';
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.88);
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(19, 33, 27, 0.28);
+  }
+
+  .mls-mini-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .mls-mini-stats div {
+    padding: 10px;
+    border-radius: 14px;
+    background: #f7f2e8;
+    font-size: 0.85rem;
+    color: var(--mls-ink-soft);
+  }
+
+  .mls-mini-stats strong {
+    display: block;
+    color: var(--mls-ink);
+    font-size: 1rem;
+  }
+
+  .mls-sensor-card {
+    padding: 16px;
+  }
+
+  .mls-gauges {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .mls-gauge {
+    aspect-ratio: 1;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #fffdf8, #efe4d2);
+    padding: 12px;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    color: var(--mls-ink-soft);
+  }
+
+  .mls-gauge strong {
+    display: block;
+    color: var(--mls-ink);
+    font-size: 1.1rem;
+  }
+
+  .mls-section {
+    margin-top: 72px;
+  }
+
+  .mls-section h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1;
+    margin: 0 0 14px;
+    letter-spacing: -0.04em;
+  }
+
+  .mls-section p {
+    color: var(--mls-ink-soft);
+    line-height: 1.7;
+    font-size: 1.04rem;
+    margin: 0;
+  }
+
+  .mls-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 28px;
+  }
+
+  .mls-card {
+    padding: 28px;
+    box-shadow: var(--mls-shadow);
+  }
+
+  .mls-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.35rem;
+  }
+
+  .mls-card p {
+    margin-bottom: 16px;
+  }
+
+  .mls-card ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--mls-ink-soft);
+    line-height: 1.7;
+  }
+
+  .mls-metric-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 28px;
+  }
+
+  .mls-metric {
+    padding: 22px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(49, 77, 47, 0.08);
+    box-shadow: var(--mls-shadow);
+  }
+
+  .mls-metric strong {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .mls-proof-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 28px;
+  }
+
+  .mls-proof {
+    padding: 24px;
+  }
+
+  .mls-proof strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+
+  .mls-pricing-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 30px;
+  }
+
+  .mls-price-card {
+    padding: 28px;
+    box-shadow: var(--mls-shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mls-price-card.featured {
+    background: linear-gradient(160deg, rgba(212, 95, 61, 0.08), rgba(201, 154, 61, 0.12));
+    border: 1px solid rgba(212, 95, 61, 0.2);
+  }
+
+  .mls-price-tag {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(212, 95, 61, 0.12);
+    color: var(--mls-accent);
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  .mls-pricing-value {
+    font-size: 2.6rem;
+    line-height: 1;
+    margin: 12px 0 10px;
+  }
+
+  .mls-price-card ul {
+    padding-left: 18px;
+    color: var(--mls-ink-soft);
+    line-height: 1.75;
+    margin: 18px 0 26px;
+  }
+
+  .mls-cta {
+    margin-top: 72px;
+    padding: 38px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, rgba(49, 77, 47, 0.96), rgba(111, 143, 58, 0.92));
+    color: #fefcf6;
+    box-shadow: 0 28px 70px rgba(49, 77, 47, 0.24);
+  }
+
+  .mls-cta h2,
+  .mls-cta p {
+    color: #fefcf6;
+  }
+
+  .mls-footer {
+    grid-template-columns: 1.2fr 0.8fr;
+    margin-top: 30px;
+    align-items: center;
+  }
+
+  .mls-footer-note {
+    color: rgba(254, 252, 246, 0.82);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1080px) {
+    .mls-hero,
+    .mls-card-grid,
+    .mls-metric-grid,
+    .mls-proof-grid,
+    .mls-pricing-grid,
+    .mls-footer {
+      grid-template-columns: 1fr;
+    }
+
+    .mls-gauges {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .mls-shell {
+      padding: 18px 14px 72px;
+    }
+
+    .mls-topbar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .mls-hero-copy,
+    .mls-dashboard,
+    .mls-card,
+    .mls-price-card,
+    .mls-proof,
+    .mls-cta {
+      padding: 22px;
+    }
+
+    .mls-hero-points,
+    .mls-grid-preview,
+    .mls-gauges,
+    .mls-mini-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .mls-button-row,
+    .mls-nav {
+      width: 100%;
+    }
+
+    .mls-button {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="mls-page">
+  <div class="mls-shell">
+    <div class="mls-topbar">
+      <div class="mls-brand">
+        <div class="mls-mark">ML</div>
+        <div class="mls-brand-copy">
+          <strong>Mona Lisa Software</strong>
+          <span>Its not just science, its art</span>
+        </div>
+      </div>
+      <nav class="mls-nav">
+        <a href="#mona-lisa-platform">Platform</a>
+        <a href="#mona-lisa-workflows">Workflows</a>
+        <a href="#mona-lisa-pricing">Pricing</a>
+        <a href="#mona-lisa-demo">Book a Demo</a>
+      </nav>
+    </div>
+
+    <div class="mls-hero">
+      <div class="mls-panel mls-hero-copy">
+        <div class="mls-kicker">Greenhouse vision meets environmental intelligence</div>
+        <h1>Mona Lisa Software turns plant monitoring into a living <span>control canvas</span>.</h1>
+        <p class="mls-subtitle">
+          Sell visibility, not just dashboards. Mona Lisa Software gives growers, research teams, and controlled-environment operators a single SaaS platform for multi-camera plant analysis, live environmental telemetry, morphology workflows, and model-driven crop decisions.
+        </p>
+        <div class="mls-button-row">
+          <a class="mls-button mls-button-primary" href="#mona-lisa-demo">Schedule a Live Demo</a>
+          <a class="mls-button mls-button-secondary" href="#mona-lisa-platform">See the Platform</a>
+        </div>
+        <div class="mls-hero-points">
+          <div>
+            <strong>20 camera panels</strong>
+            Run parallel plant observation across rooms, zones, or trials.
+          </div>
+          <div>
+            <strong>PlantCV workflows</strong>
+            Move from ROI detection to morphology, growth, and stress signals.
+          </div>
+          <div>
+            <strong>Sensor-aware operations</strong>
+            Watch canopy insights beside temperature, humidity, CO2, light, and soil moisture.
+          </div>
+        </div>
+      </div>
+
+      <div class="mls-panel mls-dashboard">
+        <div class="mls-screen">
+          <div class="mls-screen-top">
+            <div class="mls-dots"><span></span><span></span><span></span></div>
+            <div class="mls-screen-badge">Mona Lisa Software SaaS Console</div>
+          </div>
+
+          <div class="mls-grid-preview">
+            <div class="mls-cam-card">
+              <div class="mls-cam-head">
+                <strong>Camera Panel 01</strong>
+                <span class="mls-status">Auto Analyze</span>
+              </div>
+              <div class="mls-feed"></div>
+              <div class="mls-mini-stats">
+                <div><strong>94</strong>Health Score</div>
+                <div><strong>0.79</strong>Fv/Fm Proxy</div>
+                <div><strong>+6.3%</strong>Growth</div>
+              </div>
+            </div>
+
+            <div class="mls-cam-card">
+              <div class="mls-cam-head">
+                <strong>Camera Panel 08</strong>
+                <span class="mls-status">Nutrient Watch</span>
+              </div>
+              <div class="mls-feed"></div>
+              <div class="mls-mini-stats">
+                <div><strong>3</strong>ROI Zones</div>
+                <div><strong>0.14</strong>Yellow Ratio</div>
+                <div><strong>Stable</strong>Trend</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mls-sensor-card">
+            <strong style="display:block; margin-bottom:12px;">Environmental layer</strong>
+            <div class="mls-gauges">
+              <div class="mls-gauge"><div><strong>24.5 C</strong>Temperature</div></div>
+              <div class="mls-gauge"><div><strong>55%</strong>Humidity</div></div>
+              <div class="mls-gauge"><div><strong>400</strong>CO2</div></div>
+              <div class="mls-gauge"><div><strong>750</strong>Light</div></div>
+              <div class="mls-gauge"><div><strong>38%</strong>Soil Moisture</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mls-section" id="mona-lisa-platform">
+      <h2>The software is technical. The experience should feel effortless.</h2>
+      <p>
+        Mona Lisa Software packages advanced plant analysis into a subscription platform that operators can actually use day to day. It merges multi-camera monitoring, environmental telemetry, ROI analysis, morphology outputs, dataset export, and model-assisted classification into one branded environment your customers can access as a service.
+      </p>
+      <div class="mls-card-grid">
+        <div class="mls-card">
+          <h3>See every growing zone</h3>
+          <p>Monitor up to 20 camera panels with adjustable FPS, streaming quality, on-demand capture, and scheduled auto-analysis.</p>
+          <ul>
+            <li>Parallel camera feeds across greenhouse sections</li>
+            <li>Real-time ROI overlays and analysis tables</li>
+            <li>Built for inspection, experimentation, and operations</li>
+          </ul>
+        </div>
+        <div class="mls-card">
+          <h3>Turn imagery into decisions</h3>
+          <p>Use PlantCV-powered workflows to quantify morphology, growth, stress signals, and plant condition instead of relying on visual guesswork.</p>
+          <ul>
+            <li>ROI metrics including area, perimeter, aspect ratio, solidity, and extent</li>
+            <li>Health, growth, and deficiency heuristics from canopy structure and color</li>
+            <li>Support for model training, loading, and inference workflows</li>
+          </ul>
+        </div>
+        <div class="mls-card">
+          <h3>Unify plant and climate data</h3>
+          <p>Show what the crop looks like and what the room is doing in the same interface, with live gauges and historical environmental plots.</p>
+          <ul>
+            <li>Temperature, humidity, CO2, light, and soil moisture</li>
+            <li>Thread-safe continuous data monitoring</li>
+            <li>Configurable history window and reset controls</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mls-section" id="mona-lisa-workflows">
+      <h2>Built for teams who need evidence, not intuition.</h2>
+      <p>
+        Position Mona Lisa Software for commercial greenhouses, plant science labs, indoor farms, seed trials, and ag-tech teams who need repeatable workflows, faster anomaly detection, and cleaner operational visibility.
+      </p>
+      <div class="mls-metric-grid">
+        <div class="mls-metric">
+          <strong>20</strong>
+          camera panels that can be configured per deployment
+        </div>
+        <div class="mls-metric">
+          <strong>7</strong>
+          analysis modes from ROI detection to morphology and ML workflows
+        </div>
+        <div class="mls-metric">
+          <strong>5</strong>
+          environmental signals visible beside plant vision outputs
+        </div>
+        <div class="mls-metric">
+          <strong>1</strong>
+          platform for crop monitoring, reporting, and customer-facing service delivery
+        </div>
+      </div>
+    </div>
+
+    <div class="mls-section">
+      <h2>Why this sells as SaaS</h2>
+      <p>
+        Customers are not buying a script. They are buying a branded operational layer for crop visibility, quality assurance, remote review, and model-assisted plant care. That makes pricing easier to justify, onboarding easier to standardize, and expansion easier to sell across more rooms, sites, or research programs.
+      </p>
+      <div class="mls-proof-grid">
+        <div class="mls-proof">
+          <strong>Recurring revenue model</strong>
+          Monthly platform access, onboarding, sensor integration, model setup, and premium support can be packaged cleanly into service tiers.
+        </div>
+        <div class="mls-proof">
+          <strong>Clear operational value</strong>
+          Customers can track plant condition, compare zones, export datasets, and see environmental context without switching systems.
+        </div>
+        <div class="mls-proof">
+          <strong>Room to upsell</strong>
+          Add managed model training, custom analytics, API access, alerting, compliance reporting, and multi-site deployment over time.
+        </div>
+      </div>
+    </div>
+
+    <div class="mls-section" id="mona-lisa-pricing">
+      <h2>Example pricing structure</h2>
+      <p>
+        Use this section as a starting point for WordPress. Adjust pricing to match your support model, hosting cost, and whether cameras and sensors are customer-supplied or bundled.
+      </p>
+      <div class="mls-pricing-grid">
+        <div class="mls-price-card">
+          <span class="mls-price-tag">Starter</span>
+          <h3>Single Room Visibility</h3>
+          <div class="mls-pricing-value">$499<span style="font-size:1rem; font-family:'IBM Plex Sans', sans-serif;">/mo</span></div>
+          <p>For small controlled-environment teams getting their first monitoring workflow in place.</p>
+          <ul>
+            <li>Up to 4 camera panels</li>
+            <li>Environmental dashboard</li>
+            <li>Core PlantCV workflows</li>
+            <li>Email support</li>
+          </ul>
+          <a class="mls-button mls-button-secondary" href="#mona-lisa-demo">Start the conversation</a>
+        </div>
+        <div class="mls-price-card featured">
+          <span class="mls-price-tag">Most Popular</span>
+          <h3>Research and Production</h3>
+          <div class="mls-pricing-value">$1,499<span style="font-size:1rem; font-family:'IBM Plex Sans', sans-serif;">/mo</span></div>
+          <p>For greenhouses and R&amp;D operators who need multi-zone visibility and model-driven reporting.</p>
+          <ul>
+            <li>Up to 20 camera panels</li>
+            <li>Auto-analysis workflows</li>
+            <li>Dataset export and model loading</li>
+            <li>Priority onboarding and support</li>
+          </ul>
+          <a class="mls-button mls-button-primary" href="#mona-lisa-demo">Book a live demo</a>
+        </div>
+        <div class="mls-price-card">
+          <span class="mls-price-tag">Enterprise</span>
+          <h3>Multi-Site Intelligence</h3>
+          <div class="mls-pricing-value">Custom</div>
+          <p>For operators standardizing crop monitoring across multiple facilities or customer accounts.</p>
+          <ul>
+            <li>Custom deployment architecture</li>
+            <li>Advanced ML workflow support</li>
+            <li>API, integrations, and reporting</li>
+            <li>Dedicated success planning</li>
+          </ul>
+          <a class="mls-button mls-button-secondary" href="#mona-lisa-demo">Talk enterprise</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mls-cta" id="mona-lisa-demo">
+      <h2>Mona Lisa Software</h2>
+      <p>
+        Its not just science, its art. Give your customers a platform that makes plant monitoring look premium, feel operationally serious, and scale like a service business.
+      </p>
+      <div class="mls-footer">
+        <div class="mls-footer-note">
+          Perfect for a WordPress landing page, demo page, or product homepage. Replace the CTA links with your form, Calendly URL, Stripe checkout, or sales contact page.
+        </div>
+        <div class="mls-button-row" style="justify-content:flex-end; margin-bottom:0;">
+          <a class="mls-button mls-button-primary" href="mailto:sales@example.com">Request Pricing</a>
+          <a class="mls-button mls-button-secondary" href="https://calendly.com/">Book a Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
