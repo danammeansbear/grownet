@@ -5,6 +5,21 @@
 ---
 
 ## Overview
+<img width="1906" height="1001" alt="image" src="https://github.com/user-attachments/assets/15fcde75-6a14-4298-9f19-9dade1f9c52b" />
+<img width="1903" height="1002" alt="image" src="https://github.com/user-attachments/assets/d3f1add5-040c-4dc3-9ecb-e1ccec8e941d" />
+<img width="1905" height="1001" alt="image" src="https://github.com/user-attachments/assets/a0bfd027-74f4-42a1-8757-5d0dd0eb3f48" />
+<img width="1881" height="999" alt="image" src="https://github.com/user-attachments/assets/70f988ae-8c74-4be0-9884-c7666a79a83d" />
+<img width="1911" height="998" alt="image" src="https://github.com/user-attachments/assets/7d300bf6-d5ae-46cb-bd20-7f8b4ecf2837" />
+<img width="1863" height="995" alt="image" src="https://github.com/user-attachments/assets/c5ccc5e1-caf9-4c21-887d-d72a6ce6b2aa" />
+<img width="1906" height="1003" alt="image" src="https://github.com/user-attachments/assets/b9842183-11e8-4908-8f67-76795ba326c6" />
+<img width="1910" height="973" alt="image" src="https://github.com/user-attachments/assets/77327191-5f41-4fb2-b95f-afb1eeb39b5e" />
+<img width="1856" height="1005" alt="image" src="https://github.com/user-attachments/assets/472967f4-0e58-4713-bfe8-843c866a4008" />
+
+
+
+
+
+
 
 GreenSight is a **Tkinter desktop dashboard** built on top of the open-source [PlantCV](https://plantcv.danforthcenter.org/) computer vision library. It provides a unified interface for:
 
